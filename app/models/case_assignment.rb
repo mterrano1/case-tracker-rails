@@ -1,0 +1,2 @@
+class CaseAssignment < ApplicationRecord
+end

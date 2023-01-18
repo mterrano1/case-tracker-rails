@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :case_assignments
   resources :cases
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
