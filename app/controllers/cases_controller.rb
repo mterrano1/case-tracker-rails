@@ -19,6 +19,12 @@ class CasesController < ApplicationController
         }
     end
 
+    def update
+        selectedCase = Case.find(params[:id])
+        selectedCase.update!(case_params)
+        render json: selectedCase
+    end
+
     #DELETE /cases/:id
     def destroy
         selectedCase = Case.find(params[:id])
@@ -37,6 +43,6 @@ class CasesController < ApplicationController
     end
 
     def case_params
-        params.permit(:allegation_type, :allegation, :department, :status)
+        params.permit(:allegation_type, :allegation, :department, :status, :resolution)
     end
 end
