@@ -10,6 +10,8 @@ class CasesController < ApplicationController
 
     #GET /cases
     def index
+        cases = Case.all
+        render json: cases 
     end
 
     #DELETE /cases/:id
