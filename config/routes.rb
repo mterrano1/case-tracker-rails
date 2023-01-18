@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :case_assignments
-  resources :cases
+  resources :cases, only: [:create]
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
   get '/me', to: 'users#show'
