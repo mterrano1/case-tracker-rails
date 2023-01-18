@@ -10,8 +10,8 @@ class CasesController < ApplicationController
 
     #GET /cases
     def index
-        cases = Case.all
-        render json: cases 
+        cases = Case.group(:allegation_type).count
+        render json: cases
     end
 
     #DELETE /cases/:id
