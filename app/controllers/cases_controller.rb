@@ -12,6 +12,13 @@ class CasesController < ApplicationController
     def index
     end
 
+    #DELETE /cases/:id
+    def destroy
+        selectedCase = Case.find(params[:id])
+        selectedCase.destroy
+        head :no_content
+    end
+
     private
 
     # Query all users with the "Manager" role and assign each new case to the Manager
