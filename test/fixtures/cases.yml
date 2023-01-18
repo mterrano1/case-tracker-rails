@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  allegation_type: MyString
+  allegation: MyString
+  department: MyString
+  status: MyString
+  resolution: MyString
+  customer_id: 1
+
+two:
+  allegation_type: MyString
+  allegation: MyString
+  department: MyString
+  status: MyString
+  resolution: MyString
+  customer_id: 1
