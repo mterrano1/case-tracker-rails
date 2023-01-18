@@ -3,6 +3,7 @@ class CaseAssignmentsController < ApplicationController
     # POST /cases/:case_id/case_assignment
     def create
         case_assignment = CaseAssignment.create!(case_assignment_params)
+        case_assignment.assigned_case.update!(status: "Open")
         render json: case_assignment, status: :created
     end
 

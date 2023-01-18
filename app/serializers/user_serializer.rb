@@ -3,14 +3,14 @@ class UserSerializer < ActiveModel::Serializer
   has_many :assigned_cases
 
   def open_case_count
-    object.assigned_cases.joins(:case_assignments).where(cases: { status: "Open" }).size
+    object.case_assignments.joins(:assigned_case).where(cases: { status: "Open" }, assigned_employee_id: object.id).count
   end
 
   def closed_case_count
-    object.assigned_cases.joins(:case_assignments).where(cases: { status: "Closed" }).size
+    object.case_assignments.joins(:assigned_case).where(cases: { status: "Closed" }, assigned_employee_id: object.id).count
   end
 
   def unassigned_case_count
-    object.assigned_cases.joins(:case_assignments).where(cases: { status: "Unassigned" }).size
+    object.case_assignments.joins(:assigned_case).where(cases: { status: "Unassigned" }, assigned_employee_id: object.id).count
   end
 end
