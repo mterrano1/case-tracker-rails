@@ -6,6 +6,12 @@ class CaseAssignmentsController < ApplicationController
         render json: case_assignment, status: :created
     end
 
+    #GET /case_assignments
+    def index
+        case_assignments = @current_user.assigned_cases
+        render json: case_assignments
+    end
+
     private
 
     def case_assignment_params
