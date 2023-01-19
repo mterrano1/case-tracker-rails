@@ -23,6 +23,13 @@ module Backend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:4000'
+        resource '*', headers: :any, methods: [:get, :post, :options]
+      end
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
