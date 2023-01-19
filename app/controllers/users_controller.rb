@@ -8,6 +8,11 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    def index
+        researcher = User.where(role: "Researcher")
+        render json: researcher
+    end
+
     #GET /me
     def show
         render json: @current_user
