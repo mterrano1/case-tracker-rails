@@ -4,8 +4,9 @@ class UsersController < ApplicationController
     #POST /signup
     def create
         user = User.create!(user_params)
-        session[:user_id] = user.id
-        render json: user, status: :created
+        payload = { user_id: user.id }
+        token = JWT.encode(payload, ENV["JWT_SECRET"], "HS256")
+        render json: { token: token }, status: :created
     end
 
     def index
