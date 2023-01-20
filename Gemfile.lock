@@ -90,6 +90,7 @@ GEM
     irb (1.6.2)
       reline (>= 0.3.0)
     jsonapi-renderer (0.2.2)
+    jwt (2.6.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -168,6 +169,7 @@ DEPENDENCIES
   active_model_serializers
   bcrypt
   debug
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
