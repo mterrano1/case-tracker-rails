@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::API
+    before_action :authenticate_user
 
     def authenticate_user
         token = request.headers["Authorization"]
-        blacklisted_token = Blacklist.find_by(token: token)
+        blacklisted_token = Blacklist.find_by(jti: token)
         if blacklisted_token
             render json: { errors: ["Not authorized"] }, status: :unauthorized
         else
