@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by(username: params[:username])
         if user&.authenticate(params[:password])
-            payload = { user_id: user.id }
+            payload = { user_id: user.id, exp: Time.now.to_i + 7200 }
             token = JWT.encode(payload, ENV["JWT_SECRET"], "HS256")
             render json: { token: token }
         else
@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
 
     #DELETE /logout
     def destroy
-        session.delete :user_id
+        token = request.headers["Authorization"]
+        Blacklist.create(token: token)
         head :no_content
     end
 end
