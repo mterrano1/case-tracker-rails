@@ -14,7 +14,6 @@ class UsersController < ApplicationController
         render json: researcher
     end
 
-    #GET /me
     def show
         render json: @current_user
     end

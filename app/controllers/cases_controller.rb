@@ -43,6 +43,6 @@ class CasesController < ApplicationController
     end
 
     def case_params
-        params.permit(:allegation_type, :allegation, :department, :status, :resolution)
+        params.permit(:id, :case, :allegation_type, :allegation, :department, :status, :resolution)
     end
 end
