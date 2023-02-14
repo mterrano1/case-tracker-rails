@@ -1,14 +1,14 @@
 class CasesController < ApplicationController
 
-    #POST /cases
+    # Creates a new case and assigns it to the manager with the fewest 
+    # assigned cases by calling the "assign_to_manager" method.
     def create
         @created_case = @current_user.created_cases.create!(case_params)
-        # Automatically assign all new cases to the manager with the fewest assigned cases
         assign_to_manager
         render json: @created_case, status: :created
     end
 
-    #GET /cases
+    # Groups cases by allegation type and department and returns a JSON response with those groupings.
     def index
         cases_by_allegation_type = Case.group(:allegation_type).count
         cases_by_department = Case.group(:department).count
@@ -19,13 +19,14 @@ class CasesController < ApplicationController
         }
     end
 
+    # Finds the selected case by ID, updates it with the parameters passed in, and returns the updated case.
     def update
         selectedCase = Case.find(params[:id])
         selectedCase.update!(case_params)
         render json: selectedCase
     end
 
-    #DELETE /cases/:id
+    # Finds the selected case by ID, destroys it, and returns a 204 no content response.
     def destroy
         selectedCase = Case.find(params[:id])
         selectedCase.destroy
